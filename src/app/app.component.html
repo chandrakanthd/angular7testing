@@ -5,6 +5,8 @@
   </h1>
 </div>
 
-<app-html-dom></app-html-dom>
+<app-card-input (onCardAdd)="addCard($event)"></app-card-input>
+
+<app-pass-input [cards]="cards"></app-pass-input>
 
 <router-outlet></router-outlet>
