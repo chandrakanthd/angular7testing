@@ -9,10 +9,17 @@
     </div>
     <div class=" row ">
       <div class="col text-center">
-        <video #myvid id="my-video" class="video-js vjs-big-play-centered mini-play" width="640" height="360"
-           style="margin : auto" controls preload="auto">
+        <video #myvid id="my-video" class="video-js vjs-big-play-centered mini-play" width="640" height="360" style="margin : auto"
+          controls autoplay>
           <source [src]="video" type="application/x-mpegURL">
         </video>
+      </div>
+    </div>
+    <div class="row" style="text-align:center">
+      <div class="col text-center">
+        <ul *ngFor="let item of playlist" (click)="changeVideo(item)">
+          <li>{{item}}</li>
+        </ul>
       </div>
     </div>
   </div>

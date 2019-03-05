@@ -27,9 +27,11 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/video.js/dist/video-js.min.css",
               "src/styles.scss"
             ],
             "scripts": [
+              "./node_modules/video.js/dist/video.min.js"
             ]
           },
           "configurations": {

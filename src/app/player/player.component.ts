@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 
 
 // Declare the videojs lib as external to the angular
@@ -9,7 +9,7 @@ declare  let videojs :  any ;
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements  AfterViewInit {
+export class PlayerComponent implements  AfterViewInit, OnDestroy {
 
 
   // Title of the component
@@ -24,6 +24,14 @@ export class PlayerComponent implements  AfterViewInit {
   // URL of the video to be played.
   // video =  '//vjs.zencdn.net/v/oceans.mp4' ;
   video =  'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8' ;
+
+  playlist =[
+    'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8',
+    'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
+    'https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8',
+    'https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8'
+  ]
+
   // Access the html5 video element via viewchild.
   @ ViewChild ('myvid') vid :  ElementRef ;
 
@@ -36,9 +44,20 @@ export class PlayerComponent implements  AfterViewInit {
 
     this.vidObj  =  new  videojs (document.getElementById('my-video'), {} , function() {
       videojs.log('Your player is ready!');
+
     });
 
+  }
 
+  ngOnDestroy(){
+    this.vidObj = null;
+  }
+
+  changeVideo(item: string){
+    this.video = item;
+    console.log('Url is :'+ this.video);
+    this.ngOnDestroy();
+    this.ngAfterViewInit();
   }
 
 }
